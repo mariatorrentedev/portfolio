@@ -41,7 +41,7 @@ jobs:
         run: |
           npm run build
           # Copy resume.pdf to dist folder
-          cp /resume.pdf dist/
+          cp resume.pdf dist/
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
