@@ -1,5 +1,6 @@
 import { Grid, Typography, Link, IconButton } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
+import { Navigation } from "./components";
 
 type Icon = {
   icon: React.ReactNode;
@@ -27,8 +28,9 @@ export default function App() {
       maxWidth="md"
       textAlign="left"
       margin="0 auto"
+      alignItems="center"
       padding={["5rem 2rem", "9rem 2rem"]}
-      spacing={2} // Adjust the spacing between items
+      spacing={2}
     >
       <Grid item>
         <Typography fontSize={[18, 42]} color="secondary">
@@ -55,12 +57,6 @@ export default function App() {
             component="a"
             color="secondary"
             href={item.link}
-            sx={{
-              ".MuiSvgIcon-root": {
-                height: ["2rem", "4rem"],
-                width: ["2rem", "4rem"],
-              },
-            }}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -68,15 +64,19 @@ export default function App() {
           </IconButton>
         ))}
       </Grid>
-      <Grid item alignSelf="center">
+      <Grid item>
         <Link
           color="secondary.main"
+          component="a"
           href="/resume.pdf"
           target="_blank"
           sx={{ fontSize: ["1rem", "2rem"] }}
         >
           View full resume
         </Link>
+      </Grid>
+      <Grid item sx={{ width: "100%" }}>
+        <Navigation />
       </Grid>
     </Grid>
   );

@@ -29,6 +29,16 @@ export const theme = createTheme({
           textAlign: "left",
           color: "#ececec",
         },
+        ":root": {
+          ".MuiSvgIcon-root": {
+            height: "4rem",
+            width: "4rem",
+            "@media (max-width:600px)": {
+              height: "2rem",
+              width: "2rem",
+            },
+          },
+        },
       },
     },
   },
