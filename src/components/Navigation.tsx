@@ -80,7 +80,7 @@ function a11yProps(index: number) {
 export default function Navigation() {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (e: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (newValue: number) => {
     setValue(newValue);
   };
 
@@ -90,7 +90,7 @@ export default function Navigation() {
         orientation="vertical"
         variant="scrollable"
         value={value}
-        onChange={handleChange}
+        onChange={(_, newValue) => handleChange(newValue)}
         aria-label="Vertical tabs example"
       >
         <Tab label="About" {...a11yProps(0)} />
