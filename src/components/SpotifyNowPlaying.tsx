@@ -32,7 +32,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 
 function SpotifyMessage({ message }: { message: string }) {
   return (
-    <Stack flexDirection="row" alignItems="center">
+    <Stack flexDirection="row" alignItems={["baseline", "center"]}>
       <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
         <img src={SpotifyIcon} alt="Spotify" />
       </Icon>
