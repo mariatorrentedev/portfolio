@@ -60,7 +60,10 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box maxWidth={[250, "100%"]} sx={{ paddingX: [1, 4] }}>
+        <Box
+          maxWidth={[250, 900]}
+          sx={{ paddingX: [1, 4], textAlign: "justify" }}
+        >
           {children}
         </Box>
       )}
