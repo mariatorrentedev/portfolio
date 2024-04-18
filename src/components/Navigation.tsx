@@ -1,9 +1,8 @@
 import * as React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Box, Tab, Tabs, Typography, Stack } from "@mui/material";
 import { styled } from "@mui/system";
+import SpotifyNowPlaying from "./SpotifyNowPlaying";
+import { CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } from "../constants";
 
 const TabsWrapper = styled(Box)(({ theme }) => ({
   flexGrow: 1,
@@ -62,8 +61,8 @@ function TabPanel({ children, value, index, ...other }: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box maxWidth={[250, "100%"]} sx={{ paddingX: [1, 4] }}>
+          {children}
         </Box>
       )}
     </div>
@@ -90,6 +89,7 @@ export default function Navigation() {
         orientation="vertical"
         variant="scrollable"
         value={value}
+        // (_) Param is intentionally unused.
         onChange={(_, newValue) => handleChange(newValue)}
         aria-label="Vertical tabs example"
       >
@@ -98,7 +98,16 @@ export default function Navigation() {
         <Tab label="Contact" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={value} index={0}>
-        About me
+        <Stack spacing={1}>
+          <Typography fontSize={[16, 18]}>
+            I'm a curious being, who loves challenges, people and music...
+          </Typography>
+          <SpotifyNowPlaying
+            clientId={CLIENT_ID}
+            clientSecret={CLIENT_SECRET}
+            refreshToken={REFRESH_TOKEN}
+          />
+        </Stack>
       </TabPanel>
       <TabPanel value={value} index={1}>
         Projects
