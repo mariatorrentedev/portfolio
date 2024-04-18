@@ -38,6 +38,16 @@ export const theme = createTheme({
               width: "2rem",
             },
           },
+          ".MuiIcon-root": {
+            height: "2rem",
+            width: "1.5rem",
+            "@media (max-width:600px)": {
+              width: "1rem",
+            },
+            img: {
+              width: "100%",
+            },
+          },
         },
       },
     },

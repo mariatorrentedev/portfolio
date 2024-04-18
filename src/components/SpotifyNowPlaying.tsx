@@ -1,21 +1,47 @@
 import * as React from "react";
-import type { AuthProps } from "../types/spotify";
 import type { GetNowPlayingResponse } from "../services/spotify";
 import {
-  Stack,
   Box,
-  Typography,
   Card,
   CardContent,
   CardMedia,
+  Icon,
+  Stack,
+  Typography,
 } from "@mui/material";
 import { getNowPlaying } from "../services/spotify";
+import SpotifyIcon from "../assets/spotify.svg";
+import {
+  CLIENT_ID as clientId,
+  CLIENT_SECRET as clientSecret,
+  REFRESH_TOKEN as refreshToken,
+} from "../constants";
+import { styled } from "@mui/system";
 
-export default function SpotifyNowPlaying({
-  clientId,
-  clientSecret,
-  refreshToken,
-}: AuthProps) {
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  maxWidth: 190,
+  whiteSpace: "nowrap",
+  textOverflow: "ellipsis",
+  overflow: "hidden",
+  fontSize: 16,
+  [theme.breakpoints.down("md")]: {
+    fontSize: 12,
+    maxWidth: 120,
+  },
+}));
+
+function SpotifyMessage({ message }: { message: string }) {
+  return (
+    <Stack flexDirection="row" alignItems="center">
+      <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
+        <img src={SpotifyIcon} alt="Spotify" />
+      </Icon>
+      <Typography color="secondary.main">{message}</Typography>
+    </Stack>
+  );
+}
+
+export default function SpotifyNowPlaying() {
   const [loading, setLoading] = React.useState(true);
   const [nowPlayingData, setNowPlayingData] =
     React.useState<GetNowPlayingResponse | null>(null);
@@ -29,50 +55,50 @@ export default function SpotifyNowPlaying({
       .catch((error) => {
         console.error("Error fetching now playing data:", error);
       });
-  }, [clientId, clientSecret, refreshToken]);
+  }, []);
 
   return (
     <>
       {loading ? (
-        <Typography>Loading...</Typography>
+        <SpotifyMessage message="Syncing to Maria's Tunes..." />
       ) : nowPlayingData && nowPlayingData?.is_playing ? (
         <Card
           sx={{
             display: "flex",
             maxHeight: 70,
             justifyContent: "space-between",
-            maxWidth: ["fit-content", 300],
+            alignItems: "center",
+            maxWidth: ["fit-content", 330],
             backgroundColor: "black",
             color: "white",
           }}
         >
-          <Stack flexDirection="column" alignItems="baseline">
-            <CardContent sx={{ padding: 1.5 }}>
-              <Typography fontSize={["0.7rem", "1rem"]}>
-                {nowPlayingData.item.name}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                component="div"
-                fontSize={["0.7rem", "1rem"]}
-              >
-                {nowPlayingData.item?.artists
-                  .map((_artist) => _artist.name)
-                  .join(",")}
-              </Typography>
-            </CardContent>
+          <CardContent sx={{ padding: "12px" }}>
+            <StyledTypography>{nowPlayingData.item.name}</StyledTypography>
+            <StyledTypography variant="subtitle1">
+              {nowPlayingData.item?.artists
+                .map((_artist) => _artist.name)
+                .join(",")}
+            </StyledTypography>
+          </CardContent>
+
+          <Stack flexDirection="row">
+            <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
+              <img src={SpotifyIcon} alt="Spotify" />
+            </Icon>
+
+            <Box maxWidth={70}>
+              <CardMedia
+                component="img"
+                sx={{ width: "100%" }}
+                image={nowPlayingData.item?.album.images[0].url}
+                alt={nowPlayingData.item.name}
+              />
+            </Box>
           </Stack>
-          <Box maxWidth={70}>
-            <CardMedia
-              component="img"
-              sx={{ width: "100%" }}
-              image={nowPlayingData.item?.album.images[0].url}
-              alt={nowPlayingData.item.name}
-            />
-          </Box>
         </Card>
       ) : (
-        <Typography>You're offline.</Typography>
+        <SpotifyMessage message=" Maria's tunes are on pause, she's probably rocking out at a concert!" />
       )}
     </>
   );

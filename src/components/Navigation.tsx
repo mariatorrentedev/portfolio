@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Box, Tab, Tabs, Typography, Stack } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { styled } from "@mui/system";
-import SpotifyNowPlaying from "./SpotifyNowPlaying";
-import { CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN } from "../constants";
+import { About } from "./";
 
 const TabsWrapper = styled(Box)(({ theme }) => ({
   flexGrow: 1,
@@ -98,16 +97,7 @@ export default function Navigation() {
         <Tab label="Contact" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={value} index={0}>
-        <Stack spacing={1}>
-          <Typography fontSize={[16, 18]}>
-            I'm a curious being, who loves challenges, people and music...
-          </Typography>
-          <SpotifyNowPlaying
-            clientId={CLIENT_ID}
-            clientSecret={CLIENT_SECRET}
-            refreshToken={REFRESH_TOKEN}
-          />
-        </Stack>
+        <About />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Projects
