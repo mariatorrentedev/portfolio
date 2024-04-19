@@ -44,6 +44,7 @@ const getAccessToken = async ({
 
 export type GetNowPlayingResponse = {
   is_playing: boolean;
+  currently_playing_type: string;
   item: NowPlayingItem;
 };
 

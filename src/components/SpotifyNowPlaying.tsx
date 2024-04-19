@@ -30,7 +30,7 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   },
 }));
 
-function SpotifyMessage({ message }: { message: string }) {
+function SpotifyStatusMessage({ message }: { message: string }) {
   return (
     <Stack flexDirection="row" alignItems={["baseline", "center"]}>
       <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
@@ -60,45 +60,52 @@ export default function SpotifyNowPlaying() {
   return (
     <>
       {loading ? (
-        <SpotifyMessage message="Syncing to Maria's Tunes..." />
-      ) : nowPlayingData && nowPlayingData?.is_playing ? (
-        <Card
-          sx={{
-            display: "flex",
-            maxHeight: 70,
-            justifyContent: "space-between",
-            alignItems: "center",
-            maxWidth: ["fit-content", 330],
-            backgroundColor: "black",
-            color: "white",
-          }}
-        >
-          <CardContent sx={{ padding: "12px" }}>
-            <StyledTypography>{nowPlayingData.item.name}</StyledTypography>
-            <StyledTypography variant="subtitle1">
-              {nowPlayingData.item?.artists
-                .map((_artist) => _artist.name)
-                .join(",")}
-            </StyledTypography>
-          </CardContent>
+        <SpotifyStatusMessage message="Syncing to Maria's Tunes..." />
+      ) : nowPlayingData &&
+        nowPlayingData?.is_playing &&
+        nowPlayingData?.currently_playing_type === "track" ? (
+        <>
+          <Typography color="secondary.main" variant="h6">
+            MOOD:
+          </Typography>
+          <Card
+            sx={{
+              display: "flex",
+              maxHeight: 70,
+              justifyContent: "space-between",
+              alignItems: "center",
+              maxWidth: ["fit-content", 330],
+              backgroundColor: "black",
+              color: "white",
+            }}
+          >
+            <CardContent sx={{ padding: "12px" }}>
+              <StyledTypography>{nowPlayingData.item.name}</StyledTypography>
+              <StyledTypography variant="subtitle1">
+                {nowPlayingData.item?.artists
+                  .map((_artist) => _artist.name)
+                  .join(",")}
+              </StyledTypography>
+            </CardContent>
 
-          <Stack flexDirection="row">
-            <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
-              <img src={SpotifyIcon} alt="Spotify" />
-            </Icon>
+            <Stack flexDirection="row">
+              <Icon sx={{ marginTop: [0, 1], marginRight: 1 }}>
+                <img src={SpotifyIcon} alt="Spotify" />
+              </Icon>
 
-            <Box maxWidth={70}>
-              <CardMedia
-                component="img"
-                sx={{ width: "100%" }}
-                image={nowPlayingData.item?.album.images[0].url}
-                alt={nowPlayingData.item.name}
-              />
-            </Box>
-          </Stack>
-        </Card>
+              <Box maxWidth={70}>
+                <CardMedia
+                  component="img"
+                  sx={{ width: "100%" }}
+                  image={nowPlayingData.item?.album.images[0].url}
+                  alt={nowPlayingData.item.name}
+                />
+              </Box>
+            </Stack>
+          </Card>
+        </>
       ) : (
-        <SpotifyMessage message=" Maria's tunes are on pause, she's probably rocking out at a concert!" />
+        <SpotifyStatusMessage message="Maria's tunes are on pause, she's probably rocking out at a concert!" />
       )}
     </>
   );
