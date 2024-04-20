@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { About } from "./";
 
@@ -78,6 +78,11 @@ function a11yProps(index: number) {
   };
 }
 
+type TabsContent = {
+  label: string;
+  component: React.ReactNode;
+};
+
 export default function Navigation() {
   const [value, setValue] = React.useState(0);
 
@@ -85,29 +90,30 @@ export default function Navigation() {
     setValue(newValue);
   };
 
+  const tabContents: TabsContent[] = [
+    { label: "About", component: <About /> },
+    { label: "Projects", component: <Typography> Projects </Typography> },
+  ];
+
   return (
     <TabsWrapper>
       <StyledTabs
         orientation="vertical"
         variant="scrollable"
         value={value}
-        // (_) Param is intentionally unused.
+        // Param is intentionally unused `_`.
         onChange={(_, newValue) => handleChange(newValue)}
         aria-label="Vertical tabs example"
       >
-        <Tab label="About" {...a11yProps(0)} />
-        <Tab label="Projects" {...a11yProps(1)} />
-        <Tab label="Contact" {...a11yProps(2)} />
+        {tabContents.map((tab, index) => (
+          <Tab key={index} label={tab.label} {...a11yProps(index)} />
+        ))}
       </StyledTabs>
-      <TabPanel value={value} index={0}>
-        <About />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Projects
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Contact
-      </TabPanel>
+      {tabContents.map((tab, index) => (
+        <TabPanel key={index} value={value} index={index}>
+          {tab.component}
+        </TabPanel>
+      ))}
     </TabsWrapper>
   );
 }

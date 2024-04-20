@@ -1,9 +1,14 @@
-import type { NowPlayingItem, AuthProps } from "../types/spotify";
+import type { NowPlayingItem } from "../types/spotify";
 import axios from "axios";
 import { Buffer } from "buffer";
 import { TOKEN_ENDPOINT, NOW_PLAYING_ENDPOINT } from "../constants";
+import {
+  CLIENT_ID as clientId,
+  CLIENT_SECRET as clientSecret,
+  REFRESH_TOKEN as refreshToken,
+} from "../constants";
 
-type GetAccessTokenResponse = {
+export type GetAccessTokenResponse = {
   access_token: string;
   token_type: string;
   expires_in: number;
@@ -11,11 +16,7 @@ type GetAccessTokenResponse = {
   scope: string;
 };
 
-const getAccessToken = async ({
-  clientId,
-  clientSecret,
-  refreshToken,
-}: AuthProps) => {
+export const getAccessToken = async () => {
   const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
 
   const bodyParams = new URLSearchParams({
@@ -44,26 +45,21 @@ const getAccessToken = async ({
 
 export type GetNowPlayingResponse = {
   is_playing: boolean;
-  currently_playing_type: string;
+  currently_playing_type: "track" | "episode";
   item: NowPlayingItem;
+  progress_ms: number;
 };
 
-export const getNowPlaying = async ({
-  clientId,
-  clientSecret,
-  refreshToken,
-}: AuthProps) => {
+export const getNowPlaying = async (accessToken?: string) => {
   try {
-    const { access_token } = await getAccessToken({
-      clientId,
-      clientSecret,
-      refreshToken,
-    });
+    if (!accessToken) {
+      throw "No Access Token available.";
+    }
     const response = await axios.get<GetNowPlayingResponse>(
       NOW_PLAYING_ENDPOINT,
       {
         headers: {
-          Authorization: `Bearer ${access_token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       }
     );

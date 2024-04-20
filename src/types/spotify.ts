@@ -1,9 +1,3 @@
-export type AuthProps = {
-  clientId: string;
-  clientSecret: string;
-  refreshToken: string;
-};
-
 type ExternalUrls = {
   spotify: string;
 };
@@ -34,4 +28,5 @@ export type NowPlayingItem = {
   album: Album;
   artists: Artist[];
   external_urls: ExternalUrls;
+  duration_ms: number;
 };
