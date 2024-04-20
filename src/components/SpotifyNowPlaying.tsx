@@ -1,22 +1,18 @@
 import * as React from "react";
-import type { GetNowPlayingResponse } from "../services/spotify";
 import {
   Box,
   Card,
   CardContent,
   CardMedia,
   Icon,
+  LinearProgress,
   Stack,
   Typography,
 } from "@mui/material";
-import { getNowPlaying } from "../services/spotify";
+import { useAccessToken, useNowPlaying } from "../services/queries";
 import SpotifyIcon from "../assets/spotify.svg";
-import {
-  CLIENT_ID as clientId,
-  CLIENT_SECRET as clientSecret,
-  REFRESH_TOKEN as refreshToken,
-} from "../constants";
 import { styled } from "@mui/system";
+import { getProgressPercentage } from "./utils";
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   maxWidth: 190,
@@ -42,24 +38,27 @@ function SpotifyStatusMessage({ message }: { message: string }) {
 }
 
 export default function SpotifyNowPlaying() {
-  const [loading, setLoading] = React.useState(true);
-  const [nowPlayingData, setNowPlayingData] =
-    React.useState<GetNowPlayingResponse | null>(null);
+  const { isLoading: isAccessTokenLoading } = useAccessToken();
+  const { data: nowPlayingData, isLoading, refetch } = useNowPlaying();
 
   React.useEffect(() => {
-    getNowPlaying({ clientId, clientSecret, refreshToken })
-      .then((response) => {
-        setNowPlayingData(response);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching now playing data:", error);
-      });
+    // For the case when the spotify user stop and restart streaming, there is not refresh
+    /**
+     * For the case when the spotify user stop and restart the satreaming,
+     * there is no refresh but we want to do a hard refresh of the query to
+     * get the latest state, although we don't want to do it if is currently
+     * playing because the query interval is in charge of that.
+     *
+     */
+    if (!isAccessTokenLoading && !nowPlayingData?.is_playing) {
+      refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <SpotifyStatusMessage message="Syncing to Maria's Tunes..." />
       ) : nowPlayingData &&
         nowPlayingData?.is_playing &&
@@ -71,7 +70,7 @@ export default function SpotifyNowPlaying() {
           <Card
             sx={{
               display: "flex",
-              maxHeight: 70,
+              maxHeight: 90,
               justifyContent: "space-between",
               alignItems: "center",
               maxWidth: ["fit-content", 330],
@@ -79,13 +78,21 @@ export default function SpotifyNowPlaying() {
               color: "white",
             }}
           >
-            <CardContent sx={{ padding: "12px" }}>
+            <CardContent sx={{ padding: [1, 0.7] }}>
               <StyledTypography>{nowPlayingData.item.name}</StyledTypography>
               <StyledTypography variant="subtitle1">
                 {nowPlayingData.item?.artists
                   .map((_artist) => _artist.name)
                   .join(",")}
               </StyledTypography>
+              <LinearProgress
+                variant="determinate"
+                value={getProgressPercentage(
+                  nowPlayingData.progress_ms,
+                  nowPlayingData.item.duration_ms
+                )}
+                sx={{ minWidth: [80, 200] }}
+              />
             </CardContent>
 
             <Stack flexDirection="row">

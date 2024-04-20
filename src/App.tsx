@@ -29,7 +29,7 @@ export default function App() {
       textAlign="left"
       margin="0 auto"
       alignItems="center"
-      padding={["5rem 2rem", "9rem 2rem"]}
+      padding={["2rem", "5rem 2rem"]}
       spacing={2}
     >
       <Grid item>
