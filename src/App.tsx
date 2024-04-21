@@ -23,7 +23,6 @@ const icons: Icon[] = [
 
 export default function App() {
   return (
-    <>
       <Grid
         container
         maxWidth="md"
@@ -49,7 +48,6 @@ export default function App() {
             meaningful experiences.
           </Typography>
         </Grid>
-
         <Grid item>
           {icons.map((item, index) => (
             <IconButton
@@ -80,6 +78,5 @@ export default function App() {
           <Navigation />
         </Grid>
       </Grid>
-    </>
   );
 }
