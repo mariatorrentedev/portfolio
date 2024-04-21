@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Box, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Tab,
+  Tabs,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { styled } from "@mui/system";
 import { About, Experience } from "./";
 
@@ -13,7 +20,7 @@ const TabsWrapper = styled(Box)(({ theme }) => ({
   paddingTop: "3rem",
   flexDirection: "row",
   minHeight: 224,
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     alignItems: "center",
     paddingTop: "1rem",
@@ -27,14 +34,14 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   "& button": {
     color: theme.palette.secondary.main,
     fontSize: 14,
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: 18,
       paddingLeft: "1rem",
       maxWidth: "100%",
       padding: "24px 60px 24px 0",
     },
   },
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     marginBottom: 16,
   },
   "& .MuiTab-root.Mui-selected": {
@@ -101,7 +108,8 @@ export default function Navigation() {
     setValue(newValue);
   };
 
-  const isMobile = useMediaQuery("(pointer: coarse)");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <TabsWrapper>

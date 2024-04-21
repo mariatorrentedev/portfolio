@@ -6,7 +6,7 @@ import {
   CLIENT_ID as clientId,
   CLIENT_SECRET as clientSecret,
   REFRESH_TOKEN as refreshToken,
-} from "../constants";
+} from "../config";
 
 export type GetAccessTokenResponse = {
   access_token: string;
