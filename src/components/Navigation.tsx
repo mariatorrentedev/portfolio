@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-  Box,
-  Tab,
-  Tabs,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Tab, Tabs, useMediaQuery, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import { About, Experience } from "./";
+import { About, Experience, Projects } from "./";
 
 const TabsWrapper = styled(Box)(({ theme }) => ({
   flexGrow: 1,
@@ -98,7 +91,7 @@ type TabsContent = {
 const tabContents: TabsContent[] = [
   { label: "About", component: <About /> },
   { label: "Experience", component: <Experience /> },
-  { label: "Projects", component: <Typography> Projects </Typography> },
+  { label: "Projects", component: <Projects /> },
 ];
 
 export default function Navigation() {

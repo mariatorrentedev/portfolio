@@ -42,9 +42,8 @@ export default function SpotifyNowPlaying() {
   const { data: nowPlayingData, isLoading, refetch } = useNowPlaying();
 
   React.useEffect(() => {
-    // For the case when the spotify user stop and restart streaming, there is not refresh
     /**
-     * For the case when the spotify user stop and restart the satreaming,
+     * For the case when the spotify user stop and restart the streaming,
      * there is no refresh but we want to do a hard refresh of the query to
      * get the latest state, although we don't want to do it if is currently
      * playing because the query interval is in charge of that.
