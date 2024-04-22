@@ -37,7 +37,6 @@ const renderList = (jobs: CompanyItem["jobs"]) => {
 
 export default function Experience() {
   const theme = useTheme();
-
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
