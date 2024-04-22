@@ -1,6 +1,9 @@
 import MendLogo from "./assets/mend.svg";
 import ThinkfulLogo from "./assets/thinkful.svg";
 import MevysLogo from "./assets/mevys.svg";
+import RandomQuiz from "./assets/random-quiz.svg";
+import ECannaB from "./assets/ecannab.svg";
+import TasteBuddy from "./assets/taste-buddy.svg";
 
 export type CompanyItem = {
   name: string;
@@ -56,6 +59,65 @@ export const COMPANIES: CompanyItem[] = [
       "Lead brainstorming sessions to generate new ideas for features and commercial relationships.",
     ],
     tech: ["JavaScript", "Liquid", "React", "CSS", "HTML", "MongoDB", "DevOps"],
+  },
+];
+
+export type ProjectItem = {
+  title: string;
+  img: string;
+  repoLink: string;
+  prodLink: string;
+  description: string;
+  tech: string[];
+};
+
+export const PROJECTS: ProjectItem[] = [
+  {
+    title: "eCannab",
+    img: ECannaB,
+    repoLink: "https://github.com/mariatorrentedev/eCannab-server",
+    prodLink: "https://ecannab-client.vercel.app/",
+    description:
+      "V1 Application created for CBD Wholesale sellers so that they can create single websites, adding products and resources to it. A double registration implemented (user/customer).",
+    tech: [
+      "JavaScript",
+      "React",
+      "Express",
+      "Vercel",
+      "Node",
+      "Mocha",
+      "Knex",
+      "PostgreSQL",
+      "Resful-API",
+    ],
+  },
+  {
+    title: "Taste Buddy",
+    img: TasteBuddy,
+    repoLink: "https://github.com/mariatorrentedev/taste-buddy-api",
+    prodLink: "https://taste-buddy-client.vercel.app/home",
+    description:
+      "Full Stack PERN Application to create, save, edit and delete wine tasting sheets.",
+    tech: [
+      "JavaScript",
+      "React",
+      "Heroku",
+      "Express",
+      "Node",
+      "Mocha",
+      "Knex",
+      "PostgreSQL",
+      "Resful-API",
+    ],
+  },
+  {
+    title: "Random Music Quiz",
+    img: RandomQuiz,
+    repoLink: "https://github.com/Jeuq/quizapp",
+    prodLink: "https://jeuq.github.io/quizapp/",
+    description:
+      "Simple client-side quiz application to test your random musical knowledge. A collaboration between: Avery O'Banion and Jacq Babb",
+    tech: ["jQuery", "HTML", "CSS", "Pages"],
   },
 ];
 
