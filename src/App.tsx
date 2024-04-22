@@ -38,9 +38,9 @@ export default function App() {
           color="info"
           sx={{ span: { fontWeight: 600 } }}
         >
-          I am <span>Maria Torrente</span>, a detailed-oriented full-stack
-          engineer, focused on ensuring elegant solutions and creating
-          meaningful experiences.
+          I am <span>Maria Torrente</span>, a detail-oriented full-stack
+          engineer focused on ensuring elegant solutions and creating meaningful
+          experiences.
         </Typography>
       </Grid>
       <Grid item>
