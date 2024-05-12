@@ -1,7 +1,7 @@
 import type { Icon } from "./types/shared";
-import { Container, Grid, Typography, Link, IconButton } from "@mui/material";
+import { Grid, Typography, Link, IconButton } from "@mui/material";
 import { GitHub, LinkedIn } from "@mui/icons-material";
-import { Navigation } from "./components";
+import { Navigation, Footer } from "./components";
 
 const icons: Icon[] = [
   {
@@ -74,11 +74,7 @@ export default function App() {
           <Navigation />
         </Grid>
       </Grid>
-      <footer>
-        <Container maxWidth="md">
-          Built with Vite, React, Typescript and Material UI, deployed to Pages.
-        </Container>
-      </footer>
+      <Footer />
     </>
   );
 }
