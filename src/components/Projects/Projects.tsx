@@ -11,7 +11,7 @@ import {
   CardActionArea,
   IconButton,
 } from "@mui/material";
-import { PROJECTS } from "../constants";
+import { PROJECTS } from "../../constants";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -78,7 +78,7 @@ export default function Projects() {
               </Typography>
             </CardContent>
           </Box>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing data-testid="card-actions">
             <IconButton
               component="a"
               target="_blank"

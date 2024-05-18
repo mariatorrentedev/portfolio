@@ -9,10 +9,10 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useAccessToken, useNowPlaying } from "../services/queries";
-import SpotifyIcon from "../assets/spotify.svg";
+import { useAccessToken, useNowPlaying } from "../../services/queries";
+import SpotifyIcon from "../../assets/spotify.svg";
 import { styled } from "@mui/system";
-import { getProgressPercentage } from "./utils";
+import { getProgressPercentage } from "../utils";
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   maxWidth: 190,
