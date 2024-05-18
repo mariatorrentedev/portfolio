@@ -11,7 +11,7 @@ import {
   CardActionArea,
   IconButton,
 } from "@mui/material";
-import { PROJECTS } from "../constants";
+import { PROJECTS } from "../../constants";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({

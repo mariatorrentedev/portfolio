@@ -29,7 +29,7 @@ export default function App() {
         spacing={2}
       >
         <Grid item>
-          <Typography fontSize={[18, 42]} color="secondary">
+          <Typography component="h1" fontSize={[18, 42]} color="secondary">
             Hey there!
           </Typography>
         </Grid>

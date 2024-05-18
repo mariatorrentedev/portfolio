@@ -1,5 +1,5 @@
 import { Typography, Container, Stack, IconButton } from "@mui/material";
-import MTLogo from "../assets/mt.png";
+import MTLogo from "../../assets/mt.png";
 
 export default function Footer() {
   return (
