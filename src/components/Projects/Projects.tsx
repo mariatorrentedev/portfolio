@@ -15,7 +15,7 @@ import { PROJECTS } from "../../constants";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  backgroundColor: "primary",
   color: "info.main",
   padding: 16,
   flexGrow: 1,
@@ -78,7 +78,7 @@ export default function Projects() {
               </Typography>
             </CardContent>
           </Box>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing data-testid="card-actions">
             <IconButton
               component="a"
               target="_blank"
