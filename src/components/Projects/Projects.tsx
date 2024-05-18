@@ -15,7 +15,7 @@ import { PROJECTS } from "../../constants";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  backgroundColor: "primary",
+  backgroundColor: theme.palette.primary.main,
   color: "info.main",
   padding: 16,
   flexGrow: 1,
