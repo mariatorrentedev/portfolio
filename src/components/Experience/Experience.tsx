@@ -57,11 +57,7 @@ export default function Experience() {
               color="info.main"
               minWidth={isMobile ? "100%" : undefined}
             >
-              <Stack
-                spacing={1}
-                minWidth={[300, 0]}
-                alignItems={["baseline", "baseline", "end"]}
-              >
+              <Stack spacing={1} alignItems={["baseline", "baseline", "end"]}>
                 <Typography variant="caption">{item.duration}</Typography>
                 <IconButton
                   component="a"
