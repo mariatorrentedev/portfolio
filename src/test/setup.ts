@@ -1,4 +1,4 @@
-import { server } from "./msw/worker";
+import { server } from "./msw/server";
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
