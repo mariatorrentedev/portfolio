@@ -26,6 +26,7 @@ export default function App() {
         margin="0 auto"
         alignItems="center"
         padding={["2rem", "5rem 2rem"]}
+        sx={{ ".MuiGrid-root": { paddingLeft: 0 } }}
         spacing={2}
       >
         <Grid item>
