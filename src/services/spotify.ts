@@ -1,8 +1,9 @@
 import type { NowPlayingItem } from "../types/spotify";
 import axios from "axios";
 import { Buffer } from "buffer";
-import { TOKEN_ENDPOINT, NOW_PLAYING_ENDPOINT } from "../constants";
 import {
+  TOKEN_ENDPOINT,
+  NOW_PLAYING_ENDPOINT,
   CLIENT_ID as clientId,
   CLIENT_SECRET as clientSecret,
   REFRESH_TOKEN as refreshToken,

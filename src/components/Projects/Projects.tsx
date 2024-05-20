@@ -11,11 +11,10 @@ import {
   CardActionArea,
   IconButton,
 } from "@mui/material";
-import { PROJECTS } from "../constants";
+import { PROJECTS } from "../../constants";
 import { styled } from "@mui/system";
 
 const StyledCard = styled(Card)(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
   color: "info.main",
   padding: 16,
   flexGrow: 1,
@@ -38,7 +37,7 @@ export default function Projects() {
       spacing={3}
     >
       {PROJECTS.map((project, index) => (
-        <StyledCard key={index}>
+        <StyledCard key={index} sx={{ backgroundColor: "primary.main" }}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <CardActionArea
               sx={{ opacity: 0.5, ":hover": { opacity: 1 } }}
@@ -78,7 +77,7 @@ export default function Projects() {
               </Typography>
             </CardContent>
           </Box>
-          <CardActions disableSpacing>
+          <CardActions disableSpacing data-testid="card-actions">
             <IconButton
               component="a"
               target="_blank"

@@ -1,5 +1,5 @@
-import type { CompanyItem } from "../constants";
-import { COMPANIES } from "../constants";
+import type { CompanyItem } from "../../constants";
+import { COMPANIES } from "../../constants";
 import {
   Timeline,
   TimelineItem,
@@ -25,7 +25,7 @@ import {
 
 const renderList = (jobs: CompanyItem["jobs"]) => {
   return (
-    <List>
+    <List data-testid="jobs">
       {jobs.map((job, index) => (
         <ListItem key={index} sx={{ textAlign: "justify" }}>
           {job}
@@ -57,11 +57,7 @@ export default function Experience() {
               color="info.main"
               minWidth={isMobile ? "100%" : undefined}
             >
-              <Stack
-                spacing={1}
-                minWidth={[300, 0]}
-                alignItems={["baseline", "baseline", "end"]}
-              >
+              <Stack spacing={1} alignItems={["baseline", "baseline", "end"]}>
                 <Typography variant="caption">{item.duration}</Typography>
                 <IconButton
                   component="a"
@@ -73,9 +69,10 @@ export default function Experience() {
                   <img src={item.logo} alt={item.name} />
                 </IconButton>
                 <Typography> {item.name}</Typography>
-                <Box>
+                <Box data-testid="chip-wrapper">
                   {item.tech.map((tech, index) => (
                     <Chip
+                      data-testid="chip"
                       key={index}
                       label={tech}
                       variant="outlined"

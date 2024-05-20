@@ -1,12 +1,11 @@
 import * as React from "react";
 import { Box, Tab, Tabs, useMediaQuery, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import { About, Experience, Projects } from "./";
+import { About, Experience, Projects } from "../";
 
 const TabsWrapper = styled(Box)(({ theme }) => ({
   flexGrow: 1,
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.secondary.main,
+  color: "secondary.main",
   display: "flex",
   marginTop: "3rem",
   borderTop: `2px solid`,
@@ -105,7 +104,7 @@ export default function Navigation() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <TabsWrapper>
+    <TabsWrapper sx={{ backgroundColor: "primary.main" }}>
       <StyledTabs
         orientation={isMobile ? "horizontal" : "vertical"}
         variant="scrollable"
