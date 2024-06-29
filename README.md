@@ -1,6 +1,6 @@
 # Hey there!  
 
-## This is Maria's portfolio website using the following technologies:
+### This is Maria's portfolio website using the following technologies:
 
   - TypeScript
   - Material UI 
