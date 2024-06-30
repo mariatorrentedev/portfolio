@@ -2,12 +2,11 @@
 
 ### This is Maria's portfolio website using the following technologies:
 
-  - TypeScript
-  - Material UI 
+  - TypeScript/React 
   - React Query
+  - Material UI
   - Vite/Vitest
-  - GitHub Actions
-  - GitHub Pages
+  - GitHub Actions/Pages
 
 
 
