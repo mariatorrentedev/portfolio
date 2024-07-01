@@ -1,17 +1,7 @@
+import type { Theme } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
-export const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#142d4c",
-    },
-    secondary: {
-      main: "#9fd3c7",
-    },
-    info: {
-      main: "#ececec",
-    },
-  },
+export const baseTheme: Theme = createTheme({
   typography: {
     fontFamily: ["Poppins", "Arial", "sans-serif"].join(","),
     h1: {
@@ -25,9 +15,7 @@ export const theme = createTheme({
       styleOverrides: {
         body: {
           minHeight: "100vh",
-          backgroundColor: "#142d4c",
           textAlign: "left",
-          color: "#ececec",
         },
         ":root": {
           ".MuiSvgIcon-root": {
