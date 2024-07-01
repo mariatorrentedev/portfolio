@@ -64,7 +64,7 @@ export default function Experience() {
                   color="secondary"
                   href={item.url}
                   target="_blank"
-                  sx={{ padding: "8px 0" }}
+                  sx={{ padding: "0", borderRadius: 0, border: "0.5px solid" }}
                 >
                   <img src={item.logo} alt={item.name} />
                 </IconButton>
