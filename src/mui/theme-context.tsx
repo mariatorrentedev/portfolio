@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { PaletteMode, Theme } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { baseTheme } from "./base-theme";
 import { lightPalette, darkPalette } from "./palettes";
@@ -17,7 +18,11 @@ export const ThemeContext = React.createContext<ThemeContextProps>({
 export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [mode, setMode] = React.useState<PaletteMode>("light");
+  // User system mode preference.
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const [mode, setMode] = React.useState<PaletteMode>(() =>
+    prefersDarkMode ? "dark" : "light"
+  );
 
   const toggleTheme = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
