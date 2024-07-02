@@ -4,6 +4,7 @@ import { Grid, Typography, Link, IconButton } from "@mui/material";
 import { GitHub, LinkedIn, LightMode, DarkMode } from "@mui/icons-material";
 import { Navigation, Footer } from "./components";
 import { ThemeContext } from "./mui/theme-context";
+import { TypeAnimation } from "react-type-animation";
 
 const icons: Icon[] = [
   {
@@ -20,7 +21,6 @@ const icons: Icon[] = [
 
 export default function App() {
   const { theme, toggleTheme } = React.useContext(ThemeContext);
-
   return (
     <>
       <Grid
@@ -40,20 +40,29 @@ export default function App() {
         </Grid>
 
         <Grid item>
-          <Typography component="h1" fontSize={[18, 42]} color="secondary">
+          <Typography
+            component="h1"
+            fontSize={[18, 42]}
+            fontWeight={500}
+            color="secondary"
+          >
             Hey there!
           </Typography>
         </Grid>
-        <Grid item>
-          <Typography
-            fontSize={[16, 42]}
-            color="info"
-            sx={{ span: { fontWeight: 600 } }}
-          >
-            I am <span>Maria Torrente</span>, a detail-oriented full-stack
-            engineer focused on ensuring elegant solutions and creating
-            meaningful experiences.
-          </Typography>
+        <Grid item fontSize={[18, 42]}>
+          <TypeAnimation
+            sequence={[
+              "Make your day outstanding 🫶🏻💫! ",
+              1000,
+              "I am Maria Torrente, a passionate human being",
+              1000,
+              "I am Maria Torrente, a detail-oriented full-stack engineer focused on ensuring elegant solutions and creating meaningful experiences",
+              1000,
+            ]}
+            wrapper="span"
+            speed={55}
+            repeat={0}
+          />
         </Grid>
         <Grid
           item
@@ -82,7 +91,7 @@ export default function App() {
             component="a"
             href="/resume.pdf"
             target="_blank"
-            sx={{ fontSize: ["1rem", "2rem"] }}
+            sx={{ fontSize: ["1rem", "2rem"], padding: "1rem" }}
           >
             View full resume
           </Link>
