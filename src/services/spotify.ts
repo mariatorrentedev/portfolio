@@ -1,13 +1,7 @@
 import type { NowPlayingItem } from "../types/spotify";
 import axios from "axios";
 import { Buffer } from "buffer";
-import {
-  TOKEN_ENDPOINT,
-  NOW_PLAYING_ENDPOINT,
-  CLIENT_ID as clientId,
-  CLIENT_SECRET as clientSecret,
-  REFRESH_TOKEN as refreshToken,
-} from "../config";
+import { config } from "../config";
 
 export type GetAccessTokenResponse = {
   access_token: string;
@@ -18,17 +12,19 @@ export type GetAccessTokenResponse = {
 };
 
 export const getAccessToken = async () => {
-  const basic = Buffer.from(`${clientId}:${clientSecret}`).toString("base64");
+  const basic = Buffer.from(
+    `${config.CLIENT_ID}:${config.CLIENT_SECRET}`
+  ).toString("base64");
 
   const bodyParams = new URLSearchParams({
     grant_type: "refresh_token",
-    refresh_token: refreshToken,
+    refresh_token: config.REFRESH_TOKEN,
   });
   const body = bodyParams.toString();
 
   try {
     const response = await axios.post<GetAccessTokenResponse>(
-      TOKEN_ENDPOINT,
+      config.TOKEN_ENDPOINT,
       body,
       {
         headers: {
@@ -57,7 +53,7 @@ export const getNowPlaying = async (accessToken?: string) => {
       throw "No Access Token available.";
     }
     const response = await axios.get<GetNowPlayingResponse>(
-      NOW_PLAYING_ENDPOINT,
+      config.NOW_PLAYING_ENDPOINT,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
