@@ -1,15 +1,12 @@
 import { http, HttpResponse } from "msw";
-import {
-  TOKEN_ENDPOINT,
-  NOW_PLAYING_ENDPOINT,
-  CLIENT_ID,
-  CLIENT_SECRET,
-} from "../../config";
+import { config } from "../../config";
 
-const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+const basic = Buffer.from(
+  `${config.CLIENT_ID}:${config.CLIENT_SECRET}`
+).toString("base64");
 
 export const handlers = [
-  http.post(TOKEN_ENDPOINT, () => {
+  http.post(config.TOKEN_ENDPOINT, () => {
     return new HttpResponse(null, {
       headers: {
         Authorization: `Basic ${basic}`,
@@ -17,7 +14,7 @@ export const handlers = [
       },
     });
   }),
-  http.get(NOW_PLAYING_ENDPOINT, () => {
+  http.get(config.NOW_PLAYING_ENDPOINT, () => {
     return new HttpResponse(null, {
       headers: {
         Authorization: `Bearer foo`,
