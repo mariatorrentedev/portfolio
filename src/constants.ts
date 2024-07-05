@@ -1,14 +1,7 @@
-import MendLogo from "./assets/mend.svg";
-import ThinkfulLogo from "./assets/thinkful.svg";
-import MevysLogo from "./assets/mevys.svg";
-import RandomQuiz from "./assets/random-quiz.svg";
-import ECannaB from "./assets/ecannab.svg";
-import TasteBuddy from "./assets/taste-buddy.svg";
-
 export type CompanyItem = {
   name: string;
   url: string;
-  logo: string;
+  logoId: string;
   duration: string;
   jobs: string[];
   tech: string[];
@@ -18,7 +11,7 @@ export const COMPANIES: CompanyItem[] = [
   {
     name: "Mend Telehealth Medicine",
     url: "https://mend.com/",
-    logo: MendLogo,
+    logoId: "mend",
     duration: "April 2021 - 2024",
     jobs: [
       "Participated in Agile development methodologies such as Scrum/Kanban for efficient project management.",
@@ -40,7 +33,7 @@ export const COMPANIES: CompanyItem[] = [
   {
     name: "Thinkful",
     url: "https://thinkful.com/",
-    logo: ThinkfulLogo,
+    logoId: "thinkful",
     duration: "Nov 2020 - March 2021",
     jobs: [
       "Remote engineer immersion program focused on learning HTML5, CSS3, Javascript ES6, SQL, and associated frameworks (such as Node.js, React, jQuery, and PostgreSQL).",
@@ -51,7 +44,7 @@ export const COMPANIES: CompanyItem[] = [
   {
     name: "Mevys Healthy Hair Optimization System",
     url: "https://mevyspro.com/",
-    logo: MevysLogo,
+    logoId: "mevys",
     duration: "Jun 2019 - 2021",
     jobs: [
       "Collaborated and coordinated with cross-functional teams to ensure seamless integration of software components.",
@@ -64,7 +57,7 @@ export const COMPANIES: CompanyItem[] = [
 
 export type ProjectItem = {
   title: string;
-  img: string;
+  imgId: string;
   repoLink: string;
   prodLink: string;
   description: string;
@@ -74,7 +67,7 @@ export type ProjectItem = {
 export const PROJECTS: ProjectItem[] = [
   {
     title: "eCannab",
-    img: ECannaB,
+    imgId: "ecannab",
     repoLink: "https://github.com/mariatorrentedev/eCannab-server",
     prodLink: "https://ecannab-client.vercel.app/",
     description:
@@ -93,7 +86,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     title: "Taste Buddy",
-    img: TasteBuddy,
+    imgId: "taste_buddy",
     repoLink: "https://github.com/mariatorrentedev/taste-buddy-api",
     prodLink: "https://taste-buddy-client.vercel.app/home",
     description:
@@ -112,7 +105,7 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     title: "Random Music Quiz",
-    img: RandomQuiz,
+    imgId: "random_quiz",
     repoLink: "https://github.com/Jeuq/quizapp",
     prodLink: "https://jeuq.github.io/quizapp/",
     description:
