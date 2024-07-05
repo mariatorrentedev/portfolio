@@ -22,6 +22,8 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
+import { CloudinaryImage } from "../../components/";
+
 
 const renderList = (jobs: CompanyItem["jobs"]) => {
   return (
@@ -66,7 +68,8 @@ export default function Experience() {
                   target="_blank"
                   sx={{ padding: "0", borderRadius: 0, border: "0.5px solid" }}
                 >
-                  <img src={item.logo} alt={item.name} />
+
+                  <CloudinaryImage publicId={item.logoId} alt={item.name}/>
                 </IconButton>
                 <Typography> {item.name}</Typography>
                 <Box data-testid="chip-wrapper">
